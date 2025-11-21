@@ -11,11 +11,11 @@
 - title: Education
   type: time_table
   contents:
-    - title: UKRI Funded PhD in Neural Network acceleration
+    - title: UKRI Funded PhD in Neural Network Acceleration
       institution: Imperial College London
       year: 2026-2029
-      
-    - title: Integrated Masters in Electronic and Information Enginneering
+
+    - title: Integrated Masters in Electronic and Information Engineering
       institution: Imperial College London
       year: 2020-2024
       description:
@@ -24,10 +24,10 @@
             - Deep Learning (88%)
             - Advanced Deep Learning Systems (81%)
             - Mathematics for Machine Learning (84%)
-            - Computer vision (78%)
+            - Computer Vision (78%)
             - Digital Signal Processing (82%)
-            - Signal processing and machine learning for finance (84%)
-            - Probability and Stochastic processes (77%)
+            - Signal Processing and Machine Learning for Finance (84%)
+            - Probability and Stochastic Processes (77%)
             - Topics in Large Dimensional Data Processing (77%)
             - Operations Research (76%)
 
@@ -36,7 +36,7 @@
             - Digital System Design (84%)
             - Advanced Computer Architecture (75%)
             - Introduction to Machine Learning (76%)
-            - Embedded systems (72%)
+            - Embedded Systems (72%)
             - Instruction Architectures and Compilers (70%)
             
 - title: Experience
