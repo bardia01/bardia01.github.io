@@ -16,4 +16,6 @@ latest_posts: false  # includes a list of the newest posts
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
-Hello! I'm Bardia. I believe that the world of hardware engineering, computer architecture and low latency software is fascinating. Please feel free to take a look at my projects and experience!
+Hello! I'm Bardia. I believe that the world of hardware engineering, computer architecture and low latency software is fascinating. I have over 2 years of experience as a hardware engineer, and am currently undertaking a UKRI funded PhD programme at Imperial College London, on sthe topic of neural network acceleration, with a focus on quantisation techniques.
+
+Please take a look at my projects and experience!
