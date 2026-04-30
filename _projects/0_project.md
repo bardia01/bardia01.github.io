@@ -7,8 +7,6 @@ img: /assets/img/fp4_e2m1_unit_vectors_2d.png
 category: work
 ---
 
-# Direction-Preserving Number Representations
-
 Low-precision number formats are now central to modern machine learning systems. They reduce memory use, improve bandwidth efficiency, and make large-scale inference and training more practical.
 
 Most discussions of low-precision representation focus on value error: how close a quantised number or vector is to the original in terms of absolute error, mean-squared error, or norm distortion.
@@ -33,11 +31,11 @@ A scalar number format defines a finite alphabet of representable values. For ex
 
 When vectors are quantised element by element, each coordinate is selected from this scalar alphabet. This produces a product-structured code: the vector is built by taking one scalar value per coordinate.
 
-For a scalar alphabet \( A \), the representable directions in dimension \( n \) are
+For a scalar alphabet $A$, the representable directions in dimension $n$ are
 
-\[
+$$
 P_n(A) := \left\{ \frac{x}{\|x\|_2} : x \in A^n \setminus \{0\} \right\}.
-\]
+$$
 
 This set lives on the unit sphere. Each point corresponds to a direction that can be represented by the quantised vector.
 
@@ -49,7 +47,7 @@ The quality of a scalar alphabet can therefore be measured by how well these poi
 
 The figure below gives a simple two-dimensional view of the 4-bit E2M1 floating-point format. Each grid intersection corresponds to a possible quantised vector. When these vectors are projected onto the unit circle, they become representable directions.
 
-![Representable directions for the FP4-E2M1 product code](/assets/img/fp4_e2m1_unit_vectors_2d.png)
+![Representable directions for the FP4-E2M1 product code](/assets/img/fp4_e2m1_unit_vectors_2d.png){: width="520" }
 
 **Figure 1.** Directional coverage for a product code using two FP4-E2M1 elements. Each point on the circle is a direction that can be represented by the product structure. The directions are not equally spaced, which creates angular gaps.
 
@@ -61,16 +59,16 @@ Those gaps determine the worst-case angular error.
 
 ## Measuring Directional Coverage
 
-For a scalar alphabet \( A \), define the worst-case angular error as the largest angle between any direction on the unit sphere and the nearest representable direction:
+For a scalar alphabet $A$, define the worst-case angular error as the largest angle between any direction on the unit sphere and the nearest representable direction:
 
-\[
+$$
 F_n(A) :=
 \sup_{u \in S^{n-1}}
 \min_{c \in P_n(A)}
 \angle(u, c).
-\]
+$$
 
-Smaller values of \( F_n(A) \) mean better directional coverage.
+Smaller values of $F_n(A)$ mean better directional coverage.
 
 This project uses this metric to compare different 4-bit scalar formats, including:
 
@@ -108,7 +106,7 @@ The results suggest that they are not.
 
 Even within the class of product-structured codes, the choice of scalar alphabet matters. Standard number formats are designed around arithmetic convenience, dynamic range, and value approximation. They are not designed directly for directional coverage.
 
-This work shows that for bit-widths \( b \geq 3 \), there exist scalar alphabets with better asymptotic directional coverage than the best standard \( b \)-bit alphabets drawn from common two’s complement, fixed-point, and floating-point families.
+This work shows that for bit-widths $b \geq 3$, there exist scalar alphabets with better asymptotic directional coverage than the best standard $b$-bit alphabets drawn from common two’s complement, fixed-point, and floating-point families.
 
 This motivates a different design principle for low-precision arithmetic:
 
@@ -124,7 +122,7 @@ The optimisation procedure searches for alphabets that minimise the sampled wors
 
 The resulting optimised alphabets were compared against common 4-bit formats across dimensions up to 64.
 
-![Sampled worst-case angular error for 4-bit alphabets](/assets/img/worst_case_angular_error.png)
+![Sampled worst-case angular error for 4-bit alphabets](/assets/img/worst_case_angular_error.png){: width="680" }
 
 **Figure 2.** Sampled worst-case angular error as dimension increases. The optimised 4-bit alphabet gives the lowest angular error. FP4-E2M1 is very close to the optimised alphabet and performs much better than the other standard formats tested.
 
@@ -150,19 +148,19 @@ To understand why E2M1 performs so well, the standard alphabets were compared ag
 
 The following plots show log-log regressions in 16 dimensions. A slope of one corresponds to a form of directional isometry: the standard alphabet aligns closely with the optimised directional structure.
 
-![Log-log alignment of E3M0 with the optimised alphabet](/assets/img/log-log-e3m0.png)
+![Log-log alignment of E3M0 with the optimised alphabet](/assets/img/log-log-e3m0.png){: width="500" }
 
 **Figure 3.** Log-log alignment between E3M0 and the optimised alphabet.
 
-![Log-log alignment of E1M2 with the optimised alphabet](/assets/img/log-log-e1m2.png)
+![Log-log alignment of E1M2 with the optimised alphabet](/assets/img/log-log-e1m2.png){: width="500" }
 
 **Figure 4.** Log-log alignment between E1M2 and the optimised alphabet.
 
-![Log-log alignment of E2M1 with the optimised alphabet](/assets/img/log-log-e2m1.png)
+![Log-log alignment of E2M1 with the optimised alphabet](/assets/img/log-log-e2m1.png){: width="500" }
 
 **Figure 5.** Log-log alignment between E2M1 and the optimised alphabet. E2M1 aligns especially closely with the optimised alphabet, suggesting that it acts like an efficient floating-point rounding of the direction-preserving code.
 
-![Log-log alignment of INT4 with the optimised alphabet](/assets/img/log-log-int4.png)
+![Log-log alignment of INT4 with the optimised alphabet](/assets/img/log-log-int4.png){: width="500" }
 
 **Figure 6.** Log-log alignment between INT4 and the optimised alphabet.
 
