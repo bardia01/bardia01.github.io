@@ -7,6 +7,8 @@ img: /assets/img/fp4_e2m1_unit_vectors_2d.png
 category: work
 ---
 
+# Direction-Preserving Number Representations
+
 Low-precision number formats are now central to modern machine learning systems. They reduce memory use, improve bandwidth efficiency, and make large-scale inference and training more practical.
 
 Most discussions of low-precision representation focus on value error: how close a quantised number or vector is to the original in terms of absolute error, mean-squared error, or norm distortion.
