@@ -5,6 +5,7 @@ description: A geometric look at how low-precision number formats preserve vecto
 importance: 0
 img: /assets/img/fp4_e2m1_unit_vectors_2d.png
 category: work
+published: false
 ---
 
 # Direction-Preserving Number Representations
