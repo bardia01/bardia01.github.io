@@ -3,17 +3,16 @@
 
   <!-- Head -->
   <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="3; url=/">    <!-- Metadata, OpenGraph and Schema.org -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
     
 
     <!-- Standard metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page not found | Bardia  Zadeh</title>
+    <title>Direction-Preserving Number Representations | Bardia  Zadeh</title>
     <meta name="author" content="Bardia  Zadeh">
-    <meta name="description" content="Looks like there has been a mistake. Nothing exists here.">
+    <meta name="description" content="The geometry of low-precision number formats.">
     <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
 
 
@@ -39,7 +38,7 @@
     <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://bardia01.github.io/404.html">
+    <link rel="canonical" href="https://bardia01.github.io/projects/0_project/">
 
     <!-- Dark Mode -->
     
@@ -117,12 +116,91 @@
         <div class="post">
 
           <header class="post-header">
-            <h1 class="post-title">Page not found</h1>
-            <p class="post-description">Looks like there has been a mistake. Nothing exists here.</p>
+            <h1 class="post-title">Direction-Preserving Number Representations</h1>
+            <p class="post-description">The geometry of low-precision number formats.</p>
           </header>
 
           <article>
-            <p>You will be redirected to the main page within 3 seconds. If not redirected, please go back to the <a href="/">home page</a>.</p>
+            <p><strong>Bardia Zadeh and George A. Constantinides</strong> · Imperial College London</p>
+
+<p><strong>Accepted to Asilomar 2026</strong></p>
+
+<p><a href="https://arxiv.org/abs/2605.07662" rel="external nofollow noopener" target="_blank">Paper</a> · <a href="https://github.com/bardia01/Direction-Preserving-Number-Representations" rel="external nofollow noopener" target="_blank">Code and Lean proofs</a> · <a href="https://bardia01.github.io/directional_coverage_explorer/">Interactive demo</a> · <a href="https://constantinides.net/2026/06/02/directionality-in-low-precision/" rel="external nofollow noopener" target="_blank">George’s blog post</a></p>
+
+<p>As part of my PhD research, I worked with my supervisor George Constantinides to investigate how low-precision number formats preserve vector directions. In block-scaled arithmetic, a shared scale factor handles magnitude, leaving the values inside a block to encode its direction. This led us to ask: how should we choose those values to represent directions well?</p>
+
+<p>We treat a number format as a finite set of scalar values, or an alphabet. Choosing each vector component from this alphabet creates a product code. Normalising its nonzero vectors gives a set of points on the unit sphere, whose largest angular gaps measure the format’s worst-case directional error.</p>
+
+<div class="row justify-content-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/fp4_e2m1_unit_vectors_2d.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" alt="E2M1 scalar grid projected onto the unit circle, showing uneven gaps between representable directions" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">Directions represented by two E2M1 values. The red points are unevenly spaced around the circle, leaving gaps in angular coverage.</figcaption>
+
+</figure>
+
+    </div>
+</div>
+
+<p>We prove that, for any fixed alphabet size, product codes have worse worst-case directional coverage in sufficiently high dimensions than unrestricted spherical codes with the same number of raw codewords. We also establish that standard floating-point, fixed-point and two’s complement alphabets are asymptotically suboptimal within the product-code class. Our theorems are formally verified in Lean, with the proofs openly available alongside the experimental code.</p>
+
+<p>To explore practical block sizes, we numerically optimised 4-bit alphabets and compared them with standard formats.</p>
+
+<div class="row justify-content-center">
+    <div class="col-sm-10 mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/max_worst_case_angular_error_deg.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" alt="Sampled worst-case angular error for optimised, E2M1, INT/E1M2 and E3M0 alphabets across dimensions 4 to 64, with E2M1 close to the optimised alphabet" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture><figcaption class="caption">Sampled worst-case angular error for 4-bit alphabets as dimension increases. E2M1, used in NVIDIA's NVFP4, closely follows the optimised alphabet.</figcaption>
+
+</figure>
+
+    </div>
+</div>
+
+<p>For 16-element blocks, the size used in NVIDIA’s NVFP4, the sampled worst-case angular errors were:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Format</th>
+      <th style="text-align: right">Angular error (degrees)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Optimised alphabet</td>
+      <td style="text-align: right">6.07</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">E2M1</td>
+      <td style="text-align: right">6.67</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">INT/E1M2</td>
+      <td style="text-align: right">9.58</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">E3M0</td>
+      <td style="text-align: right">11.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These results, from <a href="https://arxiv.org/html/2605.07662v1#S9" rel="external nofollow noopener" target="_blank">Table I of the paper</a>, are estimates over one million sampled directions. E2M1 comes close to the optimised alphabet, offering a geometric explanation for its strong performance in block-scaled machine learning. The experiments also show how directional coverage can guide the design of future number formats.</p>
+
+<p>I also built the <a href="https://bardia01.github.io/directional_coverage_explorer/">Directional Coverage Explorer</a>, where you can change a scalar alphabet and see how its representable directions cover the circle.</p>
 
           </article>
 
